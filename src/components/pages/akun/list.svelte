@@ -28,7 +28,7 @@
 			<span class="ms-auto">{formatNumberToRupiah(v.limit ?? 0)}</span>
 			<AksiList
 				onEdit={() => goto('/akun/ubah?id=' + v.id)}
-				onDelete={() => ((list.aksi.delete = v.id), (list.aksi.name = 'akun'))}
+				onDelete={() => ((list.aksi.delete = [v.id]), (list.aksi.name = 'akun'))}
 			/>
 		</li>
 	{/each}

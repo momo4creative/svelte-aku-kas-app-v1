@@ -29,11 +29,12 @@ export const actions = {
         return { data: res.result }
     },
 
-    delete: async ({ request }) => {
-        const zod = await parceZod(request, idSchema)
-        if (!zod.success) return fail(400, zod.error)
+    delete: async ({ url }) => {
+        const ids = url.searchParams.getAll('id')
+        if (!ids) return fail(400, { message: 'Id kosong !' })
 
-        const res = await db.transaksi.delete([zod.data])
+        const body = ids.map(id => ({ id }))
+        const res = await db.transaksi.delete(body)
         if (!res.success) return fail(res.error.status ?? 400, res.error)
         return { data: res.result }
     }

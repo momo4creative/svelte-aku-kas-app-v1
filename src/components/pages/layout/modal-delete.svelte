@@ -23,24 +23,29 @@
 			invalidate('base:layout');
 		}
 	};
+
+	const urlAction = $derived.by(() => {
+		const uri = new URL('https://go.com');
+		uri.searchParams.append('/delete', '');
+		list.aksi.delete?.forEach((v) => {
+			uri.searchParams.append('id', v);
+		});
+		return uri.search;
+	});
 </script>
 
 <Modal isOpen={!!list.aksi.delete}>
 	<div class="relative">
 		<h1 class="my-6 px-4 text-center text-3xl font-medium">Apakah anda yakin menghapus ?</h1>
 
-		{#if error}
-			<Alert {...error} />
-		{/if}
+		<Alert {...error} />
 
 		<form
 			use:enhance={() => handleSubmit('Hapus ' + list.aksi.name, callback)}
-			action="/{list.aksi.name}?/delete"
+			action="/{list.aksi.name}{urlAction}"
 			method="post"
 			class="my-4 flex justify-center gap-2"
 		>
-			<input type="text" name="id" value={list.aksi.delete} hidden />
-
 			<Button type="submit">Ya</Button>
 			<Button onclick={() => (list.aksi.delete = undefined)}>Tidak</Button>
 		</form>

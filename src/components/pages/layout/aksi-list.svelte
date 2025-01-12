@@ -35,7 +35,7 @@
 
 {#snippet item()}
 	<div
-		transition:fly={{ x: 10 }}
+		transition:fly={{ y: 10 }}
 		class="absolute right-0 z-10 grid gap-2 rounded bg-gray-200 p-1 text-white shadow-lg transition"
 	>
 		<Button onclick={onEdit} icon="pencil">Ubah</Button>

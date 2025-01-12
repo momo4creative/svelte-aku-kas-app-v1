@@ -27,11 +27,12 @@ export const actions = {
         return { data: res.result[0] }
     },
 
-    delete: async ({ request }) => {
-        const zod = await parceZod(request, idSchema)
-        if (!zod.success) return fail(400, zod.error)
+    delete: async ({ url }) => {
+        const ids = url.searchParams.getAll('id')
+        if (!ids) return fail(400, { message: 'Id kosong !' })
 
-        const res = await db.akun.delete([zod.data])
+        const body = ids.map(id => ({ id }))
+        const res = await db.akun.delete(body)
         if (!res.success) return fail(res.error.status ?? 400, res.error)
         return { data: res.result }
     }

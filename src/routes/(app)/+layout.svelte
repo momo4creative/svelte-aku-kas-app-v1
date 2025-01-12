@@ -41,4 +41,6 @@
 
 <Alert {...list.akun.error} />
 
-<ModalDelete />
+{#if list.aksi.delete}
+	<ModalDelete />
+{/if}
