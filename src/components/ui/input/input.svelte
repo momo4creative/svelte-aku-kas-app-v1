@@ -6,16 +6,25 @@
 	interface Props extends HTMLInputAttributes {
 		label: string;
 		errors?: string[];
+		listExis?: (string | number)[];
+		maxChar?: number;
 	}
-	let { label, value = $bindable(), errors, ...props }: Props = $props();
+	let { label, maxChar, value = $bindable(), listExis, errors, ...props }: Props = $props();
 </script>
 
 {#snippet input()}
 	<input
 		type="text"
 		bind:value
-		oninput={() => (errors = undefined)}
+		oninput={({ currentTarget }) => {
+			errors = undefined;
+			if (listExis && listExis.indexOf(Number(currentTarget.value)) != -1) {
+				errors = ['Data sudah ada !'];
+			}
+		}}
+		maxlength={maxChar}
 		{...props}
+		aria-invalid={!!errors}
 		spellcheck="false"
 		class={cn(
 			'h-10 w-full rounded px-4 leading-none transition',

@@ -5,21 +5,21 @@ export const load = (async ({ locals: { user }, depends, url }) => {
     depends("base:layout")
     console.log('base', new Date().getSeconds());
 
-    const monthNow = url.searchParams.get('bulan') ?? new Date().getMonth() + 1
-    const yearNow = url.searchParams.get('bulan') ?? new Date().getFullYear()
+    const bulan = url.searchParams.get('bulan') ?? new Date().getMonth() + 1
+    const tahun = url.searchParams.get('tahun') ?? new Date().getFullYear()
 
     const promise_summary_akun = db.akun.summary({
         akun: {
             _sort: { code: 'asc' }
         },
         transaksi: {
-            _select: ['code', 'desc', 'value'],
+            _select: ['code', 'desc', 'value', 'tanggal'],
             _sort: { created_at: 'desc' },
             _order: [0, 5],
             _date: {
                 name: 'tanggal',
-                month: Number(monthNow),
-                year: Number(yearNow),
+                month: Number(bulan),
+                year: Number(tahun),
             }
         }
     })
@@ -38,6 +38,8 @@ export const load = (async ({ locals: { user }, depends, url }) => {
     return {
         user,
         promise_summary_akun,
-        promise_summary_transaksi
+        promise_summary_transaksi,
+        bulan: Number(bulan),
+        tahun: Number(tahun)
     };
 }) satisfies LayoutServerLoad;

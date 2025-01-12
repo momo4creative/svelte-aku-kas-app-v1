@@ -25,7 +25,7 @@
 	}
 </script>
 
-<div class="fixed bottom-4 right-4 z-20 flex flex-col items-end gap-2">
+<div class="fixed bottom-8 right-4 z-20 flex flex-col items-end gap-2">
 	{#each menu as [label, href], i (label)}
 		<div animate:flip in:fly={{ y: 20, delay: i * 100 }} out:fly={{ x: 20, delay: 0 }}>
 			<Button onclick={() => clickBtn(href)}>{label}</Button>

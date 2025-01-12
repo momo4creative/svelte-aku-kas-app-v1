@@ -10,6 +10,6 @@
 
 <Header title="Akun" />
 
-<FloatBtn href="/akun" />
-
 <List values={list.akun.result.data} />
+
+<FloatBtn href="/akun" />
