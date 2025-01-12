@@ -3,8 +3,8 @@
 	"short_name": "AKUAPP",
 	"start_url": "/",
 	"display": "standalone",
-	"theme_color": "black",
-	"background_color": "black",
+	"theme_color": "#374151",
+	"background_color": "#374151",
 	"icons": [
 		{
 			"src": "/icons/cash.png",
