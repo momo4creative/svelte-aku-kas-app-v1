@@ -10,7 +10,7 @@ export const list: {
     akun: Result<DbData<SummaryAkun[]>>
     transaksi: Result<DbData<SummaryTransaksi[]>>
     aksi: {
-        delete?: string
+        delete?: string[]
         name?: string
     }
 } = $state({

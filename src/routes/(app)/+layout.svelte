@@ -6,6 +6,7 @@
 	import DataLoading from '@ui/loading/data-loading.svelte';
 	import ModalDelete from '@pages/layout/modal-delete.svelte';
 	import Alert from '@ui/message/alert.svelte';
+	import Footer from '@pages/layout/footer.svelte';
 
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
 	user.data = data.user;
@@ -29,16 +30,13 @@
 		{@render children()}
 	</div>
 
-	<footer class="sticky bottom-0 z-10 bg-gradient-to-t from-gray-200 pt-8">
-		<div class="flex justify-between bg-gray-200 px-4 py-0.5 font-mono text-sm">
-			<span>&copy; 2025 by MomoCreative</span>
-			<span>v 0.1.0</span>
-		</div>
-	</footer>
+	<Footer />
 </div>
 
 <DataLoading isLoading={list.loading} />
 
 <Alert {...list.akun.error} />
 
-<ModalDelete />
+{#if list.aksi.delete}
+	<ModalDelete />
+{/if}

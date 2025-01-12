@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { list } from '$lib/share/list.svelte';
 	import { formatDateIndo, formatNumberToRupiah } from '$lib/utils/format';
 	import Icon from '@iconify/svelte';
 	import AksiList from '@pages/layout/aksi-list.svelte';
@@ -34,7 +35,12 @@
 			</div>
 
 			<div class="absolute inset-y-0 right-0 flex items-center px-2">
-				<AksiList onEdit={() => goto('/transaksi/ubah?code=' + v.code)} onDelete={() => {}} />
+				<AksiList
+					onEdit={() => goto('/transaksi/ubah?code=' + v.code)}
+					onDelete={() => (
+						(list.aksi.delete = v.data.map((d) => d.id)), (list.aksi.name = 'transaksi')
+					)}
+				/>
 			</div>
 		</li>
 	{/each}
