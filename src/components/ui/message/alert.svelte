@@ -4,9 +4,14 @@
 	import cn from '$lib/utils/cn';
 	import Icon from '@iconify/svelte';
 	import { onDestroy } from 'svelte';
+	import { goto } from '$app/navigation';
 
 	interface Props extends HTMLBaseAttributes, ErrorZod {}
 	let { message, errors, status, class: className }: Props = $props();
+
+	if (status == 401) {
+		goto('/auth/login?msg=Silakan login terlebih dahulu !');
+	}
 
 	function getIcon() {
 		if (!status) return 'exclamation-thick';
