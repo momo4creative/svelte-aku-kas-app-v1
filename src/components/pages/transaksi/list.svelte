@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { list } from '$lib/share/list.svelte';
+	import { goto, invalidate } from '$app/navigation';
+	import { aksi, list } from '$lib/share/list.svelte';
 	import { formatDateIndo, formatNumberToRupiah } from '$lib/utils/format';
 	import Icon from '@iconify/svelte';
 	import AksiList from '@pages/layout/aksi-list.svelte';
@@ -18,7 +18,7 @@
 	{#each values as v, i (v)}
 		<li
 			animate:flip
-			in:fly={{ y: -20, delay: i * 200 }}
+			in:fly={{ y: -10, delay: i * 100 }}
 			out:fade
 			class="relative bg-white px-4 py-2 pe-14"
 		>
@@ -37,9 +37,14 @@
 			<div class="absolute inset-y-0 right-0 flex items-center px-2">
 				<AksiList
 					onEdit={() => goto('/transaksi/ubah?code=' + v.code)}
-					onDelete={() => (
-						(list.aksi.delete = v.data.map((d) => d.id)), (list.aksi.name = 'transaksi')
-					)}
+					onDelete={() => {
+						aksi.name = 'transaksi';
+						aksi.delete = v.data.map((d) => d.id);
+						aksi.onSuccess = () => {
+							// invalidate('transaksi:layout');
+							console.log('success delete transaksi');
+						};
+					}}
 				/>
 			</div>
 		</li>

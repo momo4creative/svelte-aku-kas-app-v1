@@ -2,6 +2,7 @@
 	import { akunSchema } from '$lib/schema/akun';
 	import type { ErrorZod } from '$lib/schema/parce-zod';
 	import { list } from '$lib/share/list.svelte';
+	import { listAkun } from '$lib/stores/list-store';
 	import { Input, Rupiah } from '@ui/input';
 	import type { HTMLBaseAttributes } from 'svelte/elements';
 
@@ -11,7 +12,7 @@
 	}
 	let { error, value }: Props = $props();
 
-	const listCodes = $derived(list.akun.result.data.map((d) => d.code));
+	const listCodes = $derived($listAkun.result.data.map((d) => d.code));
 </script>
 
 <input type="text" name="id" value={value?.id} hidden />

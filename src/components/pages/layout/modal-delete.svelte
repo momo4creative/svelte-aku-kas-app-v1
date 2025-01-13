@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Modal from '@ui/modal/modal.svelte';
-	import { list } from '$lib/share/list.svelte';
+	import { aksi } from '$lib/share/list.svelte';
 	import Button from '@ui/button/button.svelte';
 	import { handleSubmit, type CallbackSubmit } from '$lib/utils/handle-submit';
 	import { enhance } from '$app/forms';
@@ -19,7 +19,7 @@
 		loading: (val) => (isLoading = val),
 		failure: (err) => (error = err),
 		success: () => {
-			list.aksi = {};
+			aksi.name = undefined;
 			invalidate('base:layout');
 		}
 	};
@@ -27,27 +27,27 @@
 	const urlAction = $derived.by(() => {
 		const uri = new URL('https://go.com');
 		uri.searchParams.append('/delete', '');
-		list.aksi.delete?.forEach((v) => {
+		aksi.delete?.forEach((v) => {
 			uri.searchParams.append('id', v);
 		});
 		return uri.search;
 	});
 </script>
 
-<Modal isOpen={!!list.aksi.delete}>
+<Modal isOpen={true}>
 	<div class="relative">
 		<h1 class="my-6 px-4 text-center text-3xl font-medium">Apakah anda yakin menghapus ?</h1>
 
 		<Alert {...error} />
 
 		<form
-			use:enhance={() => handleSubmit('Hapus ' + list.aksi.name, callback)}
-			action="/{list.aksi.name}{urlAction}"
+			use:enhance={() => handleSubmit('Hapus ' + aksi.name, callback)}
+			action="/{aksi.name}{urlAction}"
 			method="post"
 			class="my-4 flex justify-center gap-2"
 		>
 			<Button type="submit">Ya</Button>
-			<Button onclick={() => (list.aksi.delete = undefined)}>Tidak</Button>
+			<Button onclick={() => (aksi.name = undefined)}>Tidak</Button>
 		</form>
 
 		{#if isLoading}

@@ -59,7 +59,7 @@
 		placeholder="0"
 		class={cn(
 			'h-10 w-full rounded px-4 ps-10 leading-none transition',
-			'border-2 border-gray-300 hover:border-gray-400',
+			'border border-gray-300 hover:border-gray-400',
 			'outline-2 outline-offset-2 outline-blue-500 focus:outline',
 			{ 'border-red-300 outline-red-500 hover:border-red-400': !!errors }
 		)}

@@ -28,7 +28,7 @@
 
 <ul class="divide-y">
 	{#each values as v, i (v)}
-		<li animate:flip in:fly={{ y: -20, delay: i * 200 }} out:fade class="bg-white px-4 py-2">
+		<li animate:flip in:fly={{ y: -10, delay: i * 100 }} out:fade class="bg-white px-4 py-2">
 			<div class="flex items-center justify-between">
 				<button
 					onclick={() => (isOpenId = isOpenId == v.id ? null : v.id)}

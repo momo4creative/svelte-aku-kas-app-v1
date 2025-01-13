@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { list } from '$lib/share/list.svelte';
+	import { aksi, list } from '$lib/share/list.svelte';
 	import { formatNumberToRupiah } from '$lib/utils/format';
 	import AksiList from '@pages/layout/aksi-list.svelte';
 	import { flip } from 'svelte/animate';
@@ -17,7 +17,7 @@
 	{#each values as v, i (v)}
 		<li
 			animate:flip
-			in:fly={{ y: -20, delay: i * 200 }}
+			in:fly={{ y: -10, delay: i * 100 }}
 			out:fade
 			class="flex gap-2 bg-white px-4 py-2"
 		>
@@ -28,7 +28,10 @@
 			<span class="ms-auto">{formatNumberToRupiah(v.limit ?? 0)}</span>
 			<AksiList
 				onEdit={() => goto('/akun/ubah?id=' + v.id)}
-				onDelete={() => ((list.aksi.delete = [v.id]), (list.aksi.name = 'akun'))}
+				onDelete={() => {
+					aksi.name = 'akun';
+					aksi.delete = [v.id];
+				}}
 			/>
 		</li>
 	{/each}

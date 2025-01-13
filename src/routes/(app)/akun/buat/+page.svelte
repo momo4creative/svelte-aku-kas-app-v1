@@ -9,7 +9,7 @@
 
 <Header title="Buat Akun" />
 
-<Form title="Buat Akun" action="/akun?/create" redirect="/akun" class="my-6 px-4">
+<Form title="Buat Akun Baru" action="/akun?/create" redirect="/akun" class="my-6 px-4">
 	{#snippet childrenSnippet(error)}
 		<FieldForm {error} />
 	{/snippet}

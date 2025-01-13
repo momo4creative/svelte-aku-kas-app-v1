@@ -4,6 +4,7 @@
 	import FloatBtn from '@pages/layout/float-btn.svelte';
 	import List from '@pages/transaksi/list.svelte';
 	import { list } from '$lib/share/list.svelte';
+	import { listTransaksi } from '$lib/stores/list-store';
 
 	let { data }: { data: PageData } = $props();
 </script>
@@ -12,4 +13,4 @@
 
 <FloatBtn href="/transaksi" />
 
-<List values={list.transaksi.result.data} />
+<List values={$listTransaksi.result.data} />
