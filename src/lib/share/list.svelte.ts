@@ -5,16 +5,17 @@ type Result<T> = {
     result: T
 }
 
+export const aksi: {
+    delete?: string[]
+    name?: string
+    onSuccess?: () => void
+} = $state({})
+
 export const list: {
     loading?: boolean
     akun: Result<DbData<SummaryAkun[]>>
     transaksi: Result<DbData<SummaryTransaksi[]>>
-    aksi: {
-        delete?: string[]
-        name?: string
-    }
 } = $state({
     akun: { result: { data: [] } },
     transaksi: { result: { data: [] } },
-    aksi: {}
 })

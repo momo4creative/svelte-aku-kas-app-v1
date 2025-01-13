@@ -5,6 +5,7 @@
 	import { list } from '$lib/share/list.svelte';
 	import List from '@pages/beranda/list.svelte';
 	import Filter from '@pages/layout/filter.svelte';
+	import { listAkun } from '$lib/stores/list-store';
 
 	let { data }: { data: PageData } = $props();
 </script>
@@ -12,5 +13,5 @@
 <Header title="AKUKAS-APP" />
 <Filter bulan={data.bulan} tahun={data.tahun} />
 
-<List values={list.akun.result.data} />
+<List values={$listAkun.result.data} />
 <FloatBtn />

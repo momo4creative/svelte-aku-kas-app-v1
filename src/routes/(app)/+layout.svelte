@@ -2,23 +2,19 @@
 	import type { Snippet } from 'svelte';
 	import type { LayoutData } from './$types';
 	import { user } from '$lib/share/user.svelte';
-	import { list } from '$lib/share/list.svelte';
+	import { aksi, list } from '$lib/share/list.svelte';
 	import DataLoading from '@ui/loading/data-loading.svelte';
 	import ModalDelete from '@pages/layout/modal-delete.svelte';
 	import Alert from '@ui/message/alert.svelte';
 	import Footer from '@pages/layout/footer.svelte';
 	import { navigating } from '$app/state';
+	import { listAkun } from '$lib/stores/list-store';
 
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
 	user.data = data.user;
 
 	$effect(() => {
-		list.loading = true;
-		data.promise_summary_akun.then((res) => {
-			list.loading = false;
-			if (!res.success) return (list.akun.error = res.error);
-			list.akun.result = res.result;
-		});
+		listAkun.init(data.promise_summary_akun);
 	});
 </script>
 
@@ -34,10 +30,10 @@
 	<Footer />
 </div>
 
-<DataLoading isLoading={list.loading || !!navigating.from} />
+<DataLoading isLoading={$listAkun.loading || !!navigating.from} />
 
-<Alert {...list.akun.error} />
+<Alert {...$listAkun.error} />
 
-{#if list.aksi.delete}
+{#if aksi.name}
 	<ModalDelete />
 {/if}

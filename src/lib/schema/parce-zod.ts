@@ -10,6 +10,14 @@ export type ErrorZod<T extends z.ZodType = z.ZodAny> = {
     errors?: z.inferFlattenedErrors<T>['fieldErrors']
 }
 
+export type ReturnDb<T> = {
+    success: false
+    error: ErrorZod
+} | {
+    success: true
+    result: T
+}
+
 export const parceZod = async<T extends z.ZodType>(request: Request, schema: T): Promise<{
     error: Prettify<ErrorZod<T>>
     success: false
@@ -18,7 +26,6 @@ export const parceZod = async<T extends z.ZodType>(request: Request, schema: T):
     data: Prettify<z.infer<T>>
 }> => {
     const form = Object.fromEntries(await request.formData())
-    console.log({ form });
 
     const res = schema.safeParse(form)
     if (!res.success) return {

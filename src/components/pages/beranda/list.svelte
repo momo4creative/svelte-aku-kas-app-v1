@@ -12,10 +12,6 @@
 	let { values }: Props = $props();
 
 	let isOpenId: string | null = $state(null);
-	let datas: typeof values = $state([]);
-	setTimeout(() => {
-		datas = values;
-	}, 0);
 </script>
 
 {#snippet transaksi(transaksis: Transaksi[])}
@@ -31,7 +27,7 @@
 {/snippet}
 
 <ul class="divide-y">
-	{#each datas as v, i (v)}
+	{#each values as v, i (v)}
 		<li animate:flip in:fly={{ y: -10, delay: i * 100 }} out:fade class="bg-white px-4 py-2">
 			<div class="flex items-center justify-between">
 				<button

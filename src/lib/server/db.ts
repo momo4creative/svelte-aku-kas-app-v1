@@ -1,15 +1,7 @@
 import { PRIVATE_GS_URL } from "$env/static/private"
-import type { ErrorZod } from "$lib/schema/parce-zod"
+import type { ErrorZod, ReturnDb } from "$lib/schema/parce-zod"
 import { App } from "./App"
 import { Auth } from "./Auth"
-
-type ReturnDb<T> = {
-    success: false
-    error: ErrorZod
-} | {
-    success: true
-    result: T
-}
 
 export class Database {
     params: DbParameters

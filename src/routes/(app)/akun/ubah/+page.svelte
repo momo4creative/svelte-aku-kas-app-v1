@@ -4,10 +4,11 @@
 	import FieldForm from '@pages/akun/field-form.svelte';
 	import type { PageData } from './$types';
 	import { list } from '$lib/share/list.svelte';
+	import { listAkun } from '$lib/stores/list-store';
 
 	let { data }: { data: PageData } = $props();
 
-	const value = $derived(list.akun.result.data.filter((d) => d.id == data.id)[0]);
+	const value = $derived($listAkun.result.data.filter((d) => d.id == data.id)[0]);
 </script>
 
 <Header title="Ubah Akun" />

@@ -1,6 +1,6 @@
 import { fail, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { idSchema, parceZod } from '$lib/schema/parce-zod';
+import { parceZod } from '$lib/schema/parce-zod';
 import { akunSchema } from '$lib/schema/akun';
 import db from '$lib/server/db';
 

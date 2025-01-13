@@ -3,19 +3,17 @@
 	import Header from '@pages/layout/header.svelte';
 	import type { PageData } from './$types';
 	import FieldForm from '@pages/transaksi/field-form.svelte';
+	import { list } from '$lib/share/list.svelte';
 
 	let { data }: { data: PageData } = $props();
+
+	const values = $derived(list.transaksi.result.data.filter((d) => d.code == data.code)?.[0]?.data);
 </script>
 
 <Header title="Buat Transaksi" />
 
-<Form
-	title="Buat Transaksi Baru"
-	action="/transaksi?/create"
-	redirect="/transaksi"
-	class="my-6 px-4"
->
+<Form title="Ubah Transaksi" action="/transaksi?/create" redirect="/transaksi" class="my-6 px-4">
 	{#snippet childrenSnippet(error)}
-		<FieldForm {error} />
+		<FieldForm {error} {values} />
 	{/snippet}
 </Form>
