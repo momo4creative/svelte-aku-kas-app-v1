@@ -7,6 +7,7 @@
 	import ModalDelete from '@pages/layout/modal-delete.svelte';
 	import Alert from '@ui/message/alert.svelte';
 	import Footer from '@pages/layout/footer.svelte';
+	import { navigating } from '$app/state';
 
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
 	user.data = data.user;
@@ -33,7 +34,7 @@
 	<Footer />
 </div>
 
-<DataLoading isLoading={list.loading} />
+<DataLoading isLoading={list.loading || !!navigating.from} />
 
 <Alert {...list.akun.error} />
 

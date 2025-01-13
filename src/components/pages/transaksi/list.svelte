@@ -12,13 +12,18 @@
 		values: SummaryTransaksi[];
 	}
 	let { values }: Props = $props();
+
+	let datas: typeof values = $state([]);
+	setTimeout(() => {
+		datas = values;
+	}, 0);
 </script>
 
 <ul class="divide-y">
-	{#each values as v, i (v)}
+	{#each datas as v, i (v)}
 		<li
 			animate:flip
-			in:fly={{ y: -20, delay: i * 200 }}
+			in:fly={{ y: -10, delay: i * 100 }}
 			out:fade
 			class="relative bg-white px-4 py-2 pe-14"
 		>
