@@ -2,7 +2,6 @@
 	import Header from '@pages/layout/header.svelte';
 	import type { PageData } from './$types';
 	import FloatBtn from '@pages/layout/float-btn.svelte';
-	import { list } from '$lib/share/list.svelte';
 	import List from '@pages/beranda/list.svelte';
 	import Filter from '@pages/layout/filter.svelte';
 	import { listAkun } from '$lib/stores/list-store';

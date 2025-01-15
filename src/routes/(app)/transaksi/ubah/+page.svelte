@@ -3,7 +3,6 @@
 	import Header from '@pages/layout/header.svelte';
 	import type { PageData } from './$types';
 	import FieldForm from '@pages/transaksi/field-form.svelte';
-	import { list } from '$lib/share/list.svelte';
 	import { listTransaksi } from '$lib/stores/list-store';
 
 	let { data }: { data: PageData } = $props();

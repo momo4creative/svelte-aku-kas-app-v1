@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { akunSchema } from '$lib/schema/akun';
 	import type { ErrorZod } from '$lib/schema/parce-zod';
-	import { list } from '$lib/share/list.svelte';
 	import { listAkun } from '$lib/stores/list-store';
 	import { Input, Rupiah } from '@ui/input';
 	import type { HTMLBaseAttributes } from 'svelte/elements';

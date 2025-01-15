@@ -13,14 +13,15 @@
 	let {}: Props = $props();
 
 	let error = $state<ErrorZod>();
-	let isLoading = $state(false);
 
 	const callback: CallbackSubmit = {
-		loading: (val) => (isLoading = val),
+		loading: (val) => (aksi.loading = val),
 		failure: (err) => (error = err),
-		success: () => {
+		success: async () => {
 			aksi.name = undefined;
-			invalidate('base:layout');
+			aksi.loading = true;
+			await invalidate('base:layout');
+			aksi.loading = false;
 		}
 	};
 
@@ -49,11 +50,5 @@
 			<Button type="submit">Ya</Button>
 			<Button onclick={() => (aksi.name = undefined)}>Tidak</Button>
 		</form>
-
-		{#if isLoading}
-			<div class="absolute inset-0 flex items-center justify-center bg-white/10">
-				<Spinner />
-			</div>
-		{/if}
 	</div>
 </Modal>

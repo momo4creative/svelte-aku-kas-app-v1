@@ -9,10 +9,6 @@
 	interface Props extends HTMLBaseAttributes, ErrorZod {}
 	let { message, errors, status, class: className }: Props = $props();
 
-	if (status == 401) {
-		goto('/auth/login?msg=Silakan login terlebih dahulu !');
-	}
-
 	function getIcon() {
 		if (!status) return 'exclamation-thick';
 		if (status >= 400) return 'close-thick';
@@ -21,6 +17,14 @@
 
 	onDestroy(() => {
 		message = undefined;
+	});
+
+	$inspect({ message, errors, status });
+
+	$effect(() => {
+		if (status == 401) {
+			goto('/auth/login?msg=Silakan login terlebih dahulu !');
+		}
 	});
 </script>
 
