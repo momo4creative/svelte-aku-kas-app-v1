@@ -40,8 +40,8 @@ export const actions = {
         db.session = session
         const token = jwt.get({ username, session })
         cookies.set('sessionId', token, { path: '/', maxAge: 60 * 60 * 24 * 5 })
-
-        return redirect(303, '/?msg=Berhasil login&status=200')
+        return
+        // return redirect(303, '/?msg=Berhasil login&status=200')
     },
 
     register: async ({ request }) => {

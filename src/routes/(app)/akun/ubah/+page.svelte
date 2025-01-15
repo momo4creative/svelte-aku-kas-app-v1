@@ -3,7 +3,6 @@
 	import Form from '@pages/layout/form.svelte';
 	import FieldForm from '@pages/akun/field-form.svelte';
 	import type { PageData } from './$types';
-	import { list } from '$lib/share/list.svelte';
 	import { listAkun } from '$lib/stores/list-store';
 
 	let { data }: { data: PageData } = $props();

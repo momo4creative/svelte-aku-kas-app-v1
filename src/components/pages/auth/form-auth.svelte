@@ -2,31 +2,46 @@
 	import { enhance } from '$app/forms';
 	import type { authSchema } from '$lib/schema/auth';
 	import type { ErrorZod } from '$lib/schema/parce-zod';
+	import { aksi } from '$lib/share/list.svelte';
 	import cn from '$lib/utils/cn';
 	import { handleSubmit, type CallbackSubmit } from '$lib/utils/handle-submit';
 	import Button from '@ui/button/button.svelte';
 	import { Input } from '@ui/input';
-	import Spinner from '@ui/loading/spinner.svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 
 	interface Props extends HTMLFormAttributes {
 		title: string;
-		loading?: boolean;
 		error?: ErrorZod<typeof authSchema.register>;
 		isLogin?: boolean;
+		onSuccess?: () => void;
 	}
-	let { error, title, children, loading, isLogin, ...props }: Props = $props();
+	let { error, title, onSuccess, children, isLogin, ...props }: Props = $props();
 
 	const callback: CallbackSubmit = {
-		loading: (val) => (loading = val),
-		failure: (err) => (error = err)
+		loading: (val) => (aksi.loading = val),
+		failure: (err) => (error = err),
+
+		success: () => {
+			if (onSuccess) onSuccess();
+		}
 	};
 </script>
 
 {#snippet field()}
 	<div class="grid gap-2">
-		<Input errors={error?.errors?.username} name="username" label="Username" />
-		<Input errors={error?.errors?.password} name="password" label="Password" type="password" />
+		<Input
+			errors={error?.errors?.username}
+			name="username"
+			label="Username"
+			autocomplete="username"
+		/>
+		<Input
+			errors={error?.errors?.password}
+			name="password"
+			label="Password"
+			type="password"
+			autocomplete="current-password"
+		/>
 		{#if !isLogin}
 			<Input
 				errors={error?.errors?.confirmPassword}
@@ -62,10 +77,4 @@
 		class="my-2 block w-full text-center text-gray-400 hover:text-inherit"
 		>{isLogin ? 'Register' : 'Login'} here !</a
 	>
-
-	{#if loading}
-		<div class="absolute inset-0 flex items-center justify-center bg-white/10">
-			<Spinner />
-		</div>
-	{/if}
 </div>

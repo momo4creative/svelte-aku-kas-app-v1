@@ -10,16 +10,17 @@ const auth: Handle = async ({ event, resolve }) => {
         event.locals.user = payload
         db.session = payload?.session
     }
-    return resolve(event)
+    return await resolve(event)
 }
 
 const guard: Handle = async ({ event, resolve }) => {
+    const redirectTo = event.url.pathname
     if (!event.locals.user && !event.url.pathname.startsWith('/auth'))
-        return redirect(307, '/auth/login?msg=Silakan login terlebih dahulu !&status=400')
+        return redirect(307, '/auth/login?msg=Silakan login terlebih dahulu !&status=400&redirectTo=' + redirectTo)
 
     if (event.locals.user && event.url.pathname.startsWith('/auth/login'))
         return redirect(307, '/?msg=Sudah login !')
-    return resolve(event)
+    return await resolve(event)
 }
 
 export const handle: Handle = sequence(auth, guard)

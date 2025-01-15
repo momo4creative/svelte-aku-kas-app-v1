@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { aksi, list } from '$lib/share/list.svelte';
+	import { aksi } from '$lib/share/list.svelte';
 	import { formatNumberToRupiah } from '$lib/utils/format';
 	import AksiList from '@pages/layout/aksi-list.svelte';
 	import { flip } from 'svelte/animate';

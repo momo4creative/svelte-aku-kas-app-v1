@@ -2,7 +2,7 @@
 	const yearNow = new Date().getFullYear();
 	const year = '2025' + (yearNow == 2025 ? '' : ' - ' + yearNow);
 
-	const version = '0.1.2';
+	const version = '0.1.3';
 </script>
 
 <footer class="sticky bottom-0 z-10 bg-gradient-to-t from-gray-200 pt-8">

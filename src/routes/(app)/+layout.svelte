@@ -2,12 +2,10 @@
 	import type { Snippet } from 'svelte';
 	import type { LayoutData } from './$types';
 	import { user } from '$lib/share/user.svelte';
-	import { aksi, list } from '$lib/share/list.svelte';
-	import DataLoading from '@ui/loading/data-loading.svelte';
+	import { aksi } from '$lib/share/list.svelte';
 	import ModalDelete from '@pages/layout/modal-delete.svelte';
 	import Alert from '@ui/message/alert.svelte';
 	import Footer from '@pages/layout/footer.svelte';
-	import { navigating } from '$app/state';
 	import { listAkun } from '$lib/stores/list-store';
 
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
@@ -29,8 +27,6 @@
 
 	<Footer />
 </div>
-
-<DataLoading isLoading={$listAkun.loading || !!navigating.from} />
 
 <Alert {...$listAkun.error} />
 

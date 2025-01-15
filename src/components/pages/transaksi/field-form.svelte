@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { ErrorZod } from '$lib/schema/parce-zod';
 	import type { transaksiSchema } from '$lib/schema/transaksi';
-	import { list } from '$lib/share/list.svelte';
 	import { listAkun, listTransaksi } from '$lib/stores/list-store';
 	import { formatDateInput } from '$lib/utils/format';
 	import { Input, Rupiah } from '@ui/input';

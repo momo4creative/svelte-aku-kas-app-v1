@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { goto, invalidate } from '$app/navigation';
-	import { aksi, list } from '$lib/share/list.svelte';
+	import { goto } from '$app/navigation';
+	import { aksi } from '$lib/share/list.svelte';
 	import { formatDateIndo, formatNumberToRupiah } from '$lib/utils/format';
 	import Icon from '@iconify/svelte';
 	import AksiList from '@pages/layout/aksi-list.svelte';
