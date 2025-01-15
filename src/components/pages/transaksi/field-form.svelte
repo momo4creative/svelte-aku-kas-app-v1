@@ -19,7 +19,7 @@
 
 	const kode = $derived(
 		Number(tanggal.toString().replaceAll('-', '')) * 1000 +
-			(($listTransaksi.result.count ?? 0) / 2 + 1)
+			((Number($listTransaksi.result.data[0].code.substring(9)) ?? 0) + 1)
 	);
 </script>
 
