@@ -19,7 +19,7 @@
 		message = undefined;
 	});
 
-	$inspect({ message, errors, status });
+	// $inspect({ message, errors, status });
 
 	$effect(() => {
 		if (status == 401) {
