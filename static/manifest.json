@@ -1,10 +1,20 @@
 {
-	"name": "AKUKAS-APP",
-	"short_name": "AKUAPP",
+	"name": "AKUKAS-APPLICATION",
+	"short_name": "AKUKAS-APP",
 	"start_url": "/",
 	"display": "standalone",
 	"theme_color": "#374151",
 	"background_color": "#374151",
+	"screenshots": [
+		{
+			"src": "/capture.png",
+			"sizes": "320x640",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "AkukasApp"
+		}
+	],
+	"description": "Aplikasi Buku Kas",
 	"icons": [
 		{
 			"src": "/icons/cash.png",
