@@ -37,7 +37,7 @@
 			if (href) return clickBtn(href);
 			isOpen = !isOpen;
 		}}
-		class="rounded-full bg-gray-700 p-2 text-white opacity-50 transition delay-100 hover:opacity-100"
+		class="rounded-full bg-gray-600 p-2 text-white transition delay-100 hover:bg-gray-700"
 	>
 		<Icon icon="mdi:plus-thick" width="24" />
 	</button>
