@@ -6,13 +6,14 @@
 	import ModalDelete from '@pages/layout/modal-delete.svelte';
 	import Alert from '@ui/message/alert.svelte';
 	import Footer from '@pages/layout/footer.svelte';
-	import { listAkun } from '$lib/stores/list-store';
+	import { listAkun, listTransaksi } from '$lib/stores/list-store';
 
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
 	user.data = data.user;
 
 	$effect(() => {
 		listAkun.init(data.promise_summary_akun);
+		listTransaksi.init(data.promise_summary_transaksi);
 	});
 </script>
 
@@ -29,6 +30,7 @@
 </div>
 
 <Alert {...$listAkun.error} />
+<Alert {...$listTransaksi.error} />
 
 {#if aksi.name}
 	<ModalDelete />
