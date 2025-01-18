@@ -23,15 +23,18 @@
 			class="relative bg-white px-4 py-2 pe-14"
 		>
 			<div class="flex gap-2">
-				<h1 class="flex-1 text-lg font-medium">{v.data[1].desc}</h1>
-				<span>{formatNumberToRupiah(v.data[1].value)}</span>
-			</div>
-
-			<div class="flex items-center">
-				<span>{v.data[0].akun.name}</span>
-				<Icon icon="mdi:arrow-down-drop" width="18" rotate={-45} />
-				<span>{v.data[1].akun.name}</span>
+				<h1 class="flex-1 font-medium">{v.data[0].code}</h1>
 				<small class="ms-auto block">{formatDateIndo(v.data[1].tanggal)}</small>
+			</div>
+			<div>
+				{#each v.data as d}
+					<div class="flex items-baseline gap-2">
+						<span class="text-lg font-medium">{d.desc}</span>
+						<span class="text-gray-500">{d.akun.name}</span>
+						<!-- <Icon icon="mdi:arrow-down-drop" width="18" rotate={-45} /> -->
+						<span class="ms-auto">{formatNumberToRupiah(d.value)}</span>
+					</div>
+				{/each}
 			</div>
 
 			<div class="absolute inset-y-0 right-0 flex items-center px-2">
