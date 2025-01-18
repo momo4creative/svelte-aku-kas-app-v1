@@ -12,7 +12,7 @@
 
 <Header title="Buat Transaksi" />
 
-<Form title="Ubah Transaksi" action="/transaksi?/create" redirect="/transaksi" class="my-6 px-4">
+<Form title="Ubah Transaksi" action="/transaksi?/update" redirect="/transaksi" class="my-6 px-4">
 	{#snippet childrenSnippet(error)}
 		<FieldForm {error} {values} />
 	{/snippet}
