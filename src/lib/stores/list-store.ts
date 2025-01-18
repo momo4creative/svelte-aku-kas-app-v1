@@ -15,12 +15,27 @@ const createStore = <T>() => {
         subscribe,
         init: async (values: Promise<ReturnDb<DbData<T[]>>>) => {
             aksi.loading = true
-            // update(n => ({ ...n, loading: true }))
             const res = await values
-            // update(n => ({ ...n, loading: false }))
             aksi.loading = false
             if (!res.success) return update(n => ({ ...n, error: res.error }))
             update(n => ({ ...n, result: res.result }))
+        },
+
+        addMore: async (values: Promise<ReturnDb<DbData<T[]>>> | undefined) => {
+            if (!values) return
+
+            aksi.loading = true
+            const res = await values
+            aksi.loading = false
+            if (!res.success) return update(n => ({ ...n, error: res.error }))
+
+            const { data, ...info } = res.result
+
+            update(n => {
+                n.result = { ...n.result, ...info }
+                n.result.data = [...n.result.data, ...data]
+                return n
+            })
         }
     }
 }
