@@ -2,7 +2,6 @@
 	import { goto } from '$app/navigation';
 	import { aksi } from '$lib/share/list.svelte';
 	import { formatDateIndo, formatNumberToRupiah } from '$lib/utils/format';
-	import Icon from '@iconify/svelte';
 	import AksiList from '@pages/layout/aksi-list.svelte';
 	import { flip } from 'svelte/animate';
 	import type { HTMLBaseAttributes } from 'svelte/elements';
@@ -22,19 +21,20 @@
 			out:fade
 			class="relative bg-white px-4 py-2 pe-14"
 		>
-			<div class="flex gap-2">
-				<h1 class="flex-1 font-medium">{v.data[0].code}</h1>
-				<small class="ms-auto block">{formatDateIndo(v.data[1].tanggal)}</small>
-			</div>
+			<div class="text-lg font-medium">{v.data[0].desc}</div>
 			<div>
 				{#each v.data as d}
 					<div class="flex items-baseline gap-2">
-						<span class="text-lg font-medium">{d.desc}</span>
-						<span class="text-gray-500">{d.akun.name}</span>
+						<span>{d.akun.name}</span>
 						<!-- <Icon icon="mdi:arrow-down-drop" width="18" rotate={-45} /> -->
 						<span class="ms-auto">{formatNumberToRupiah(d.value)}</span>
 					</div>
 				{/each}
+			</div>
+
+			<div class="flex justify-between text-gray-500">
+				<small>{v.data[0].code}</small>
+				<small>{formatDateIndo(v.data[1].tanggal)}</small>
 			</div>
 
 			<div class="absolute inset-y-0 right-0 flex items-center px-2">
